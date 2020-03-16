@@ -1,6 +1,7 @@
 plugins {
 	id 'application'
-	id 'org.openjfx.javafxplugin' version '0.0.7'
+	id 'eclipse'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
 	id 'com.github.johnrengelman.shadow' version '5.0.0'
 	id "com.diffplug.gradle.spotless" version "3.13.0"
 	id "org.sonarqube" version "2.5"
@@ -17,7 +18,8 @@ compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 ext.mainClass = 'moviescraper.doctord.Main'
-version = getVersionCode()
+//version = getVersionCode()
+version = 'v0.3.8'
 
 repositories {
 	mavenCentral()
@@ -29,7 +31,7 @@ application {
 }
 
 javafx {
-	modules = [ 'javafx.swing' ]
+	modules = [ 'javafx.swing', 'javafx.graphics' ]
 }
 
 sourceSets {

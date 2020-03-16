@@ -32,6 +32,7 @@ import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.Data18WebContentParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile;
+import moviescraper.doctord.controller.siteparsingprofile.specific.MGStageParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile;
 import moviescraper.doctord.controller.xmlserialization.KodiXmlMovieBean;
@@ -801,6 +802,8 @@ public class Movie {
 			else if (siteToParseFrom instanceof JavLibraryParsingProfile)
 				searchResults[0] = new SearchResult(((JavLibraryParsingProfile) siteToParseFrom).getOverrideURLJavLibrary());
 			else if (siteToParseFrom instanceof IAFDParsingProfile)
+				searchResults[0] = new SearchResult(urlToScrapeFromDMM);
+			else if (siteToParseFrom instanceof MGStageParsingProfile)
 				searchResults[0] = new SearchResult(urlToScrapeFromDMM);
 
 			//override any of the above if we have specifically set an override url

@@ -24,16 +24,17 @@ public class WebReleaseRenamer extends ReleaseRenamer {
 	@Override
 	public String getCleanName(String filename) {
 		String cleanFileName = filename.toLowerCase();
-		cleanFileName = replaceSeperatorsWithSpaces(cleanFileName);
+		//cleanFileName = replaceSeperatorsWithSpaces(cleanFileName);
 		/*
 		 * remove things from the filename which are usually not part of the
 		 * scene / movie name such as par2, xvid, divx, etc
 		 */
 		cleanFileName += " "; //add a space at the end so we our regex works in the next step for the last word
+		//cleanFileName = cleanFileName.replaceFirst("\\[thz\\.la\\]", "");
 		for (CSVRecord wordsToRemove : removeTheseWords) {
 			//putting spaces in front of it so we only get an actual word, not parts of a word
 			String wordToRemove = wordsToRemove.get(0).toLowerCase();
-			cleanFileName = cleanFileName.replaceFirst("\\b" + wordToRemove + "\\b", "");
+			cleanFileName = cleanFileName.replaceFirst(wordToRemove, "");
 		}
 		cleanFileName = cleanFileName.trim();
 		/*
@@ -65,7 +66,7 @@ public class WebReleaseRenamer extends ReleaseRenamer {
 			//System.out.println(siteNameReplacement);
 		}
 		//Fix up the case and trim it - not needed for search but it just looks better :)
-		cleanFileName = WordUtils.capitalize(cleanFileName).trim();
+		//cleanFileName = WordUtils.capitalize(cleanFileName).trim();
 		return cleanFileName;
 	}
 

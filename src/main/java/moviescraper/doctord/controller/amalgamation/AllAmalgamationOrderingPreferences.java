@@ -17,6 +17,7 @@ import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile.Scr
 import moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile;
+import moviescraper.doctord.controller.siteparsingprofile.specific.MGStageParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.ExcaliburFilmsParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile;
@@ -126,76 +127,76 @@ public class AllAmalgamationOrderingPreferences {
 
 		//JAV Preferences
 
-		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new JavZooParsingProfile(),
-		        new SquarePlusParsingProfile(), new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile());
+		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), 
+		        new SquarePlusParsingProfile(), new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 
 		ScraperGroupAmalgamationPreference preferences = new ScraperGroupAmalgamationPreference(ScraperGroupName.JAV_CENSORED_SCRAPER_GROUP, overallOrdering);
 
 		//Specific preferences for each field of JAV
 		try {
 			// DMM, JavLibrary, JavZoo have japanese title, only DMM is scraped at the moment
-			DataItemSourceAmalgamationPreference bestContentForOriginalTitle = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new JavLibraryParsingProfile(),
-			        new JavZooParsingProfile(), new JavBusParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForOriginalTitle = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new MGStageParsingProfile(), new JavLibraryParsingProfile(),
+			         new JavBusParsingProfile());
 			preferences.setCustomOrderingForField("originalTitle", bestContentForOriginalTitle);
 
 			// R18 has the absolute best title information. Pick any english
 			// site first, fallback to machine translated DMM
-			DataItemSourceAmalgamationPreference bestContentForID = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new R18ParsingProfile(), new JavLibraryParsingProfile(),
-			        new ActionJavParsingProfile(), new SquarePlusParsingProfile(), new JavZooParsingProfile(), new JavBusParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForID = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new MGStageParsingProfile(), new R18ParsingProfile(), new JavLibraryParsingProfile(),
+			        new ActionJavParsingProfile(), new SquarePlusParsingProfile(),  new JavBusParsingProfile());
 			preferences.setCustomOrderingForField("id", bestContentForID);
 
 			// R18 has the absolute best title information. Pick any english
 			// site first, fallback to machine translated DMM
 			DataItemSourceAmalgamationPreference bestContentForTitle = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new ActionJavParsingProfile(),
-			        new SquarePlusParsingProfile(), new JavZooParsingProfile(), new JavBusParsingProfile(), new DmmParsingProfile());
+			        new SquarePlusParsingProfile(),  new JavBusParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("title", bestContentForTitle);
 
 			// R18 has the best plot data for english. Set the plot from
 			// ActionJav only if R18 didn't have one already
-			DataItemSourceAmalgamationPreference bestContentForPlot = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForPlot = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new R18ParsingProfile(), new ActionJavParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("plot", bestContentForPlot);
 
 			// R18 has the best set data for english, JavZoo is OK
-			DataItemSourceAmalgamationPreference bestContentForSet = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavZooParsingProfile(), new JavBusParsingProfile(),
-			        new DmmParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForSet = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(),  new JavBusParsingProfile(),
+			new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("set", bestContentForSet);
 
 			// R18 has the best studio data for english
 			DataItemSourceAmalgamationPreference bestContentForStudio = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new ActionJavParsingProfile(),
-			        new JavZooParsingProfile(), new JavBusParsingProfile(), new SquarePlusParsingProfile(), new DmmParsingProfile());
+			         new JavBusParsingProfile(), new SquarePlusParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("studio", bestContentForStudio);
 
 			// R18 has the best genre data for english, fallback to machine
 			// translated DMM data
-			DataItemSourceAmalgamationPreference bestContentForGenres = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new JavZooParsingProfile(),
-			        new JavBusParsingProfile(), new SquarePlusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForGenres = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), 
+			        new JavBusParsingProfile(), new SquarePlusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("genres", bestContentForGenres);
 
 			// Get ActionJav actors if both JavLib and R18 didn't have any.
 			DataItemSourceAmalgamationPreference bestContentForActorsAndDirectors = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(),
-			        new JavZooParsingProfile(), new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile(), new SquarePlusParsingProfile());
+			         new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile(), new SquarePlusParsingProfile());
 			preferences.setCustomOrderingForField("actors", bestContentForActorsAndDirectors);
 			preferences.setCustomOrderingForField("directors", bestContentForActorsAndDirectors);
 
 			// DMM always has the best fanart and posters and extraFanart
-			DataItemSourceAmalgamationPreference bestContentForPosterAndFanart = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new R18ParsingProfile(),
-			        new JavLibraryParsingProfile(), new ActionJavParsingProfile(), new SquarePlusParsingProfile(), new JavZooParsingProfile(), new JavBusParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForPosterAndFanart = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new MGStageParsingProfile(), new R18ParsingProfile(),
+			        new JavLibraryParsingProfile(), new ActionJavParsingProfile(), new SquarePlusParsingProfile(),  new JavBusParsingProfile());
 			preferences.setCustomOrderingForField("posters", bestContentForPosterAndFanart);
 			preferences.setCustomOrderingForField("fanart", bestContentForPosterAndFanart);
 			preferences.setCustomOrderingForField("extraFanart", bestContentForPosterAndFanart);
 
 			// Both DMM and R18 have the same trailer from their respective
 			// sites
-			DataItemSourceAmalgamationPreference bestContentForTrailer = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new DmmParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForTrailer = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("trailer", bestContentForTrailer);
 
 			// Only DMM and JavLibrary has ratings
-			DataItemSourceAmalgamationPreference bestContentForRating = new DataItemSourceAmalgamationPreference(new JavLibraryParsingProfile(), new DmmParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForRating = new DataItemSourceAmalgamationPreference(new JavLibraryParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile());
 			preferences.setCustomOrderingForField("rating", bestContentForRating);
 
 			// Non localized data: year, release date, runtime...
-			DataItemSourceAmalgamationPreference bestContentForDateAndTime = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new DmmParsingProfile(), new JavLibraryParsingProfile(),
-			        new ActionJavParsingProfile(), new SquarePlusParsingProfile(), new JavZooParsingProfile(), new JavBusParsingProfile());
+			DataItemSourceAmalgamationPreference bestContentForDateAndTime = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new DmmParsingProfile(), new MGStageParsingProfile(), new JavLibraryParsingProfile(),
+			        new ActionJavParsingProfile(), new SquarePlusParsingProfile(),  new JavBusParsingProfile());
 			preferences.setCustomOrderingForField("year", bestContentForDateAndTime);
 			preferences.setCustomOrderingForField("releaseDate", bestContentForDateAndTime);
 			preferences.setCustomOrderingForField("runtime", bestContentForDateAndTime);

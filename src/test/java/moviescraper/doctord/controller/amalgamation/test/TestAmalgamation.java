@@ -16,7 +16,7 @@ import moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPr
 import moviescraper.doctord.controller.amalgamation.MovieScrapeResultGroup;
 import moviescraper.doctord.controller.amalgamation.ScraperGroupAmalgamationPreference;
 import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile.ScraperGroupName;
-import moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile;
+import moviescraper.doctord.controller.siteparsingprofile.specific.MGStageParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.R18ParsingProfile;
 import moviescraper.doctord.model.Movie;
@@ -31,10 +31,10 @@ public class TestAmalgamation {
 	@BeforeClass
 	public static void initialize() throws URISyntaxException, NoSuchFieldException, SecurityException {
 		System.out.println("Testing amalgamation");
-		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new DmmParsingProfile());
-		DataItemSourceAmalgamationPreference actorOdering = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new JavLibraryParsingProfile(), new R18ParsingProfile());
-		DataItemSourceAmalgamationPreference posterOrdering = new DataItemSourceAmalgamationPreference(new DmmParsingProfile(), new JavLibraryParsingProfile(), new R18ParsingProfile());
-		DataItemSourceAmalgamationPreference titleOrdering = new DataItemSourceAmalgamationPreference(new JavLibraryParsingProfile(), new DmmParsingProfile(), new R18ParsingProfile());
+		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new R18ParsingProfile(), new JavLibraryParsingProfile(), new MGStageParsingProfile());
+		DataItemSourceAmalgamationPreference actorOdering = new DataItemSourceAmalgamationPreference(new MGStageParsingProfile(), new JavLibraryParsingProfile(), new R18ParsingProfile());
+		DataItemSourceAmalgamationPreference posterOrdering = new DataItemSourceAmalgamationPreference(new MGStageParsingProfile(), new JavLibraryParsingProfile(), new R18ParsingProfile());
+		DataItemSourceAmalgamationPreference titleOrdering = new DataItemSourceAmalgamationPreference(new JavLibraryParsingProfile(), new MGStageParsingProfile(), new R18ParsingProfile());
 
 		ScraperGroupAmalgamationPreference orderingPreference = new ScraperGroupAmalgamationPreference(ScraperGroupName.JAV_CENSORED_SCRAPER_GROUP, overallOrdering);
 
@@ -54,9 +54,9 @@ public class TestAmalgamation {
 
 			System.out.println(movieOneURI);
 			dmmSourcedMovie = Movie.createMovieFromNfo(new File(movieOneURI));
-			dmmSourcedMovie.getTitle().setDataItemSource(new DmmParsingProfile());
-			dmmSourcedMovie.getActors().get(0).setDataItemSource(new DmmParsingProfile());
-			dmmSourcedMovie.getPosters()[0].setDataItemSource(new DmmParsingProfile());
+			dmmSourcedMovie.getTitle().setDataItemSource(new MGStageParsingProfile());
+			dmmSourcedMovie.getActors().get(0).setDataItemSource(new MGStageParsingProfile());
+			dmmSourcedMovie.getPosters()[0].setDataItemSource(new MGStageParsingProfile());
 
 			//1st
 			r18SourcedMovie = Movie.createMovieFromNfo(new File(movieTwoURI));

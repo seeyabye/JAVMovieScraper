@@ -30,6 +30,7 @@ import moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingPr
 import moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.Kin8tengokuParsingProfile;
+import moviescraper.doctord.controller.siteparsingprofile.specific.MGStageParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.MyTokyoHotParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.OnePondoParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.specific.R18ParsingProfile;
@@ -307,6 +308,9 @@ public class Main {
 				break;
 			case "dmm":
 				parsingProfile = new DmmParsingProfile();
+				break;
+			case "mgstage":
+				parsingProfile = new MGStageParsingProfile();
 				break;
 			case "javlibrary":
 				parsingProfile = new JavLibraryParsingProfile();
